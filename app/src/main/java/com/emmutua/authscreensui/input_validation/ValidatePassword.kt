@@ -4,7 +4,7 @@ import com.emmutua.authscreensui.R
 
 class ValidatePassword {
     fun execute(password: String): ValidationResult {
-        if (password.isBlank()){
+        if (password.isBlank()) {
             return ValidationResult(
                 successful = false,
                 errorMessage = R.string.password_field_blank_msg

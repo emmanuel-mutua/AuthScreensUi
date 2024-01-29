@@ -16,22 +16,25 @@ import kotlinx.coroutines.launch
 class SignInViewModel(
     private val validateUsername: ValidateUsername = ValidateUsername(),
     private val validatePassword: ValidatePassword = ValidatePassword(),
-):ViewModel() {
+) : ViewModel() {
     var uiState by mutableStateOf(SignInUiState())
     private var _signInEventsChannel = Channel<ValidationEvent>()
     val signInEventsChannel = _signInEventsChannel.receiveAsFlow()
 
-    fun onEvent(event: SignInEvent){
-        when(event){
+    fun onEvent(event: SignInEvent) {
+        when (event) {
             is SignInEvent.ChangedUsername -> {
-                uiState = uiState.copy(username = event.username)
+                uiState = uiState.copy(username = event.username, usernameError = null)
             }
+
             is SignInEvent.ChangedPassword -> {
-                uiState = uiState.copy(password = event.password)
+                uiState = uiState.copy(password = event.password, passwordError = null)
             }
+
             is SignInEvent.CheckRememberMe -> {
                 uiState = uiState.copy(checkedRememberMe = event.checked)
             }
+
             is SignInEvent.OnPasswordVisibilityClick -> {
                 uiState = uiState.copy(passwordVisible = event.visible)
             }
@@ -51,11 +54,12 @@ class SignInViewModel(
             validateUsernameResult
         ).any { !it.successful }
 
-        if (hasError){
+        if (hasError) {
             uiState = uiState.copy(
                 usernameError = validateUsernameResult.errorMessage,
                 passwordError = validatePasswordResult.errorMessage
             )
+            return
         }
         viewModelScope.launch {
             _signInEventsChannel.send(ValidationEvent.Success)
@@ -66,8 +70,8 @@ class SignInViewModel(
 data class SignInUiState(
     val username: String = "",
     @StringRes val usernameError: Int? = null,
-    val password : String = "",
-    @StringRes val passwordError : Int? = null,
-    val passwordVisible :Boolean = false,
-    val checkedRememberMe : Boolean = false
+    val password: String = "",
+    @StringRes val passwordError: Int? = null,
+    val passwordVisible: Boolean = false,
+    val checkedRememberMe: Boolean = false
 )

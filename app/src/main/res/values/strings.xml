@@ -18,4 +18,7 @@
     <string name="password_lebel">Password</string>
     <string name="your_pass_label_string">Your password</string>
     <string name="success_text">Success</string>
+    <string name="remember_me_text">Remember me</string>
+    <string name="dont_have_account_string">"Don't have an account? "</string>
+    <string name="forgot_pass_text">Forgot password?</string>
 </resources>
