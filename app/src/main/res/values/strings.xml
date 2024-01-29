@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">AuthScreensUi</string>
+    <string name="email_blank_msg">Email cannot be blank</string>
+    <string name="email_invalid_msg">Email not valid</string>
+    <string name="password_length_short_msg">Password should consist at least 8 characters</string>
+    <string name="check_accepted_terms_msg">Please accept the terms</string>
+    <string name="username_empty_msg">Username cannot be blank</string>
+    <string name="password_field_blank_msg">Password cannot be blank</string>
+    <string name="username_text">Username</string>
+    <string name="email_text">Email</string>
+    <string name="username_label">Your username</string>
+    <string name="email_label">Your email</string>
+</resources>
