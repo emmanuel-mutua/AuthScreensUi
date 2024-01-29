@@ -10,4 +10,12 @@
     <string name="email_text">Email</string>
     <string name="username_label">Your username</string>
     <string name="email_label">Your email</string>
+    <string name="sign_up_text">Sign up</string>
+    <string name="accept_terms_text">I accept the terms and privacy policy</string>
+    <string name="already_have_account_string">Already have an account?</string>
+    <string name="sign_in_string">Sign in</string>
+    <string name="create_account_string">Create account</string>
+    <string name="password_lebel">Password</string>
+    <string name="your_pass_label_string">Your password</string>
+    <string name="success_text">Success</string>
 </resources>

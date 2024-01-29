@@ -21,8 +21,15 @@ fun NavigationGraph() {
         composable(AuthDestinations.CreateAccountScreen.route) {
             CreateAccountScreen(
                 uiState = createAccountViewModel.uiState,
+                viewModel = createAccountViewModel,
                 onEvent = {
                     createAccountViewModel.onEvent(it)
+                },
+                onSignButtonClick = {
+                    navController.navigateWithPop(AuthDestinations.SignInScreen.route)
+                },
+                navigateToLogin = {
+                    navController.navigateWithPop(AuthDestinations.SignInScreen.route)
                 }
             )
         }

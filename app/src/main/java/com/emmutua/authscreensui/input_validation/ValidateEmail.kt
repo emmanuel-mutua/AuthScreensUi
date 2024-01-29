@@ -14,7 +14,7 @@ class ValidateEmail {
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             return ValidationResult(
                 successful = false,
-                errorMessage = R.string.email_blank_msg
+                errorMessage = R.string.email_invalid_msg
             )
         }
         return ValidationResult(

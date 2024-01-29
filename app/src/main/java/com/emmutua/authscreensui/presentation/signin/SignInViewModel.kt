@@ -1,5 +1,6 @@
 package com.emmutua.authscreensui.presentation.signin
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -52,8 +53,8 @@ class SignInViewModel(
 
         if (hasError){
             uiState = uiState.copy(
-                usernameError = validateUsernameResult.errorMessage.toString(),
-                passwordError = validatePasswordResult.errorMessage.toString()
+                usernameError = validateUsernameResult.errorMessage,
+                passwordError = validatePasswordResult.errorMessage
             )
         }
         viewModelScope.launch {
@@ -64,9 +65,9 @@ class SignInViewModel(
 
 data class SignInUiState(
     val username: String = "",
-    val usernameError: String? = null,
+    @StringRes val usernameError: Int? = null,
     val password : String = "",
-    val passwordError : String? = null,
+    @StringRes val passwordError : Int? = null,
     val passwordVisible :Boolean = false,
     val checkedRememberMe : Boolean = false
 )

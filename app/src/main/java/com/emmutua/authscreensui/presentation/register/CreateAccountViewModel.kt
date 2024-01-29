@@ -1,5 +1,6 @@
 package com.emmutua.authscreensui.presentation.register
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -26,19 +27,19 @@ class CreateAccountViewModel(
     fun onEvent(event: CreateAccountEvent) {
         when (event) {
             is CreateAccountEvent.UserNameChanged -> {
-                uiState = uiState.copy(username = event.username)
+                uiState = uiState.copy(username = event.username, usernameError = null)
             }
 
             is CreateAccountEvent.EmailChanged -> {
-                uiState = uiState.copy(email = event.email)
+                uiState = uiState.copy(email = event.email, emailError = null)
             }
 
             is CreateAccountEvent.PasswordChanged -> {
-                uiState = uiState.copy(password = event.password)
+                uiState = uiState.copy(password = event.password, passwordError = null)
             }
 
             is CreateAccountEvent.AcceptTerms -> {
-                uiState = uiState.copy(acceptedTerms = event.isAccepted)
+                uiState = uiState.copy(acceptedTerms = event.isAccepted, termsError = null)
             }
             is CreateAccountEvent.OnPasswordVisibilityClick -> {
                 uiState = uiState.copy(passwordVisible = event.visible)
@@ -66,10 +67,10 @@ class CreateAccountViewModel(
 
         if (hasError) {
             uiState = uiState.copy(
-                usernameError = usernameValidationResult.errorMessage.toString(),
-                emailError = emailValidationResult.errorMessage.toString(),
-                passwordError = passwordValidationResult.errorMessage.toString(),
-                termsError = termsValidationResult.errorMessage.toString()
+                usernameError = usernameValidationResult.errorMessage,
+                emailError = emailValidationResult.errorMessage,
+                passwordError = passwordValidationResult.errorMessage,
+                termsError = termsValidationResult.errorMessage
             )
             return
         }
@@ -81,12 +82,12 @@ class CreateAccountViewModel(
 
 data class CreateAccountUiState(
     val username: String = "",
-    val usernameError: String? = null,
+    @StringRes val usernameError: Int? = null,
     val email: String = "",
-    val emailError: String? = null,
+    @StringRes val emailError: Int? = null,
     val password: String = "",
-    val passwordError: String? = null,
+    @StringRes val passwordError: Int? = null,
     val acceptedTerms: Boolean = false,
-    val termsError: String? = null,
+    @StringRes val termsError: Int? = null,
     val passwordVisible : Boolean = false
 )
